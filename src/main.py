@@ -33,6 +33,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
+ball.dx = 0.1
+ball.dy = 0.1
 
 
 #==Function==
@@ -71,3 +73,28 @@ window.onkeypress(paddle_2_down,"Down")
 # Loop game
 while True:
     window.update()
+
+    #Move the ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    #Border setting
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.dy *= -1
+
+    if ball.ycor() < -290:
+        ball.sety(-290)
+        ball.dy *= -1
+
+    #Set the game resetting boundy
+    if ball.xcor() > 350:
+        ball.goto(0,0)
+        ball.dx *= -1
+
+    if ball.xcor() < - 350:
+        ball.goto(0,0)
+        ball.dx *= -1
+
+
+
