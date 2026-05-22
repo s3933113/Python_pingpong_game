@@ -35,6 +35,38 @@ ball.penup()
 ball.goto(0,0)
 
 
+#==Function==
+
+#Paddle_1 section
+def paddle_1_up():
+    y = paddle_1.ycor()
+    y += 20
+    paddle_1.sety(y)
+
+def paddle_1_down():
+    y = paddle_1.ycor()
+    y -= 20
+    paddle_1.sety(y)
+
+#Paddle_2 section
+def paddle_2_up():
+    y = paddle_2.ycor()
+    y += 20
+    paddle_2.sety(y)
+
+def paddle_2_down():
+    y = paddle_2.ycor()
+    y -= 20
+    paddle_2.sety(y)
+
+#keyboard Input
+window.listen()
+window.onkeypress(paddle_1_up,"w")
+window.onkeypress(paddle_1_down,"s")
+window.onkeypress(paddle_2_up,"Up")
+window.onkeypress(paddle_2_down,"Down")
+
+
 
 # Loop game
 while True:
