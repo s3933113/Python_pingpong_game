@@ -1,2 +1,2 @@
 # Python_pingpong_game
-Practice Python Project
+This project has been created for practice software devlopment skills
