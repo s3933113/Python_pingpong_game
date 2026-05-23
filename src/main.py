@@ -127,5 +127,10 @@ while True:
         ball.setx(-340)
         ball.dx *= -1
 
+    #AI player
+    if paddle_2.ycor() < ball.ycor() and abs(paddle_2.ycor() - ball.ycor()) > 20:
+        paddle_2_up()
+    elif paddle_2.ycor() > ball.ycor() and abs(paddle_2.ycor() - ball.ycor()) < 20:
+        paddle_2_down()
 
 
