@@ -1,4 +1,5 @@
 import turtle
+import winsound
 
 #--window screen section--
 window = turtle.Screen()
@@ -106,6 +107,7 @@ while True:
         score_1 += 1
         pen.clear()
         pen.write(f"Player A: {score_1}  Player B: {score_2}", align="center", font=("Courier", 24, "normal"))
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
 
     if ball.xcor() < - 390:
         ball.goto(0,0)
@@ -113,6 +115,7 @@ while True:
         score_2 += 1
         pen.clear()
         pen.write(f"Player A: {score_1}  Player B: {score_2}", align="center", font=("Courier", 24, "normal"))
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
 
     #--Paddle and ball collisions--
         #Right paddle
