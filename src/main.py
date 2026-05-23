@@ -8,6 +8,8 @@ window.setup(width=800, height=600)
 window.tracer(0)
 
 #Score section
+score_1 = 0
+score_2 = 0
 
 # ==Paddle 1==
 paddle_1 = turtle.Turtle()
@@ -44,7 +46,7 @@ pen.color("White")
 pen.penup()
 pen.hideturtle()
 pen.goto(0,260)
-pen.write("Player 1 : 0  Player 2 : 0", align="center", font=("Courier", 24, "normal"))
+pen.write(f"Player A: {score_1}  Player B: {score_2}", align="center", font=("Courier", 24, "normal"))
 
 
 #==Function==
@@ -101,10 +103,16 @@ while True:
     if ball.xcor() > 390:
         ball.goto(0,0)
         ball.dx *= -1
+        score_1 += 1
+        pen.clear()
+        pen.write(f"Player A: {score_1}  Player B: {score_2}", align="center", font=("Courier", 24, "normal"))
 
     if ball.xcor() < - 390:
         ball.goto(0,0)
         ball.dx *= -1
+        score_2 += 1
+        pen.clear()
+        pen.write(f"Player A: {score_1}  Player B: {score_2}", align="center", font=("Courier", 24, "normal"))
 
     #--Paddle and ball collisions--
         #Right paddle
