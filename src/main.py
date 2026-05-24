@@ -1,5 +1,7 @@
 import turtle
 import winsound
+import paddle
+import Ball
 
 #--window screen section--
 window = turtle.Screen()
@@ -8,37 +10,14 @@ window.bgcolor("black")
 window.setup(width=800, height=600)
 window.tracer(0)
 
+ball = Ball.Ball()
+paddle_1 = paddle.Paddle(-350)
+paddle_2 = paddle.Paddle(350)
+
 #Score section
 score_1 = 0
 score_2 = 0
 
-# ==Paddle 1==
-paddle_1 = turtle.Turtle()
-paddle_1.speed(0)
-paddle_1.shape("square")
-paddle_1.color("white")
-paddle_1.shapesize(stretch_wid=5, stretch_len=1)
-paddle_1.penup()
-paddle_1.goto(-350,0)
-
-# ==Paddle 2==
-paddle_2 = turtle.Turtle()
-paddle_2.speed(0)
-paddle_2.shape("square")
-paddle_2.color("white")
-paddle_2.shapesize(stretch_wid=5, stretch_len=1)
-paddle_2.penup()
-paddle_2.goto(350,0)
-
-#==Ball==
-ball = turtle.Turtle()
-ball.speed(0)
-ball.shape("square")
-ball.color("white")
-ball.penup()
-ball.goto(0,0)
-ball.dx = 0.1
-ball.dy = 0.1
 
 #==Pen==
 pen = turtle.Turtle()
@@ -50,36 +29,12 @@ pen.goto(0,260)
 pen.write(f"Player A: {score_1}  Player B: {score_2}", align="center", font=("Courier", 24, "normal"))
 
 
-#==Function==
-
-#Paddle_1 section
-def paddle_1_up():
-    y = paddle_1.ycor()
-    y += 20
-    paddle_1.sety(y)
-
-def paddle_1_down():
-    y = paddle_1.ycor()
-    y -= 20
-    paddle_1.sety(y)
-
-#Paddle_2 section
-def paddle_2_up():
-    y = paddle_2.ycor()
-    y += 20
-    paddle_2.sety(y)
-
-def paddle_2_down():
-    y = paddle_2.ycor()
-    y -= 20
-    paddle_2.sety(y)
-
 #keyboard Input
 window.listen()
-window.onkeypress(paddle_1_up,"w")
-window.onkeypress(paddle_1_down,"s")
-window.onkeypress(paddle_2_up,"Up")
-window.onkeypress(paddle_2_down,"Down")
+window.onkeypress(paddle_1.move_up, "w")
+window.onkeypress(paddle_1.move_down,"s")
+window.onkeypress(paddle_2.move_up,"Up")
+window.onkeypress(paddle_2.move_down,"Down")
 
 
 
@@ -119,18 +74,18 @@ while True:
 
     #--Paddle and ball collisions--
         #Right paddle
-    if (340 < ball.xcor() < 350) and (paddle_2.ycor() + 40 > ball.ycor() > paddle_2.ycor() -40):
-        ball.setx(340)
+    if (-340 > ball.xcor() > -350) and (paddle_1.ycor() + 40 > ball.ycor() > paddle_1.ycor() -40):
+        ball.setx(-340)
         ball.dx *= -1
         #Left paddle
-    if (-340 > ball.xcor() > -350) and (paddle_1.ycor() + 40 > ball.ycor() > paddle_1.ycor() - 40):
-        ball.setx(-340)
+    if (340 < ball.xcor() < 350) and (paddle_2.ycor() + 40 > ball.ycor() > paddle_2.ycor() - 40):
+        ball.setx(340)
         ball.dx *= -1
 
     #AI player
     if paddle_2.ycor() < ball.ycor() and abs(paddle_2.ycor() - ball.ycor()) > 20:
-        paddle_2_up()
+        paddle_2.move_up()
     elif paddle_2.ycor() > ball.ycor() and abs(paddle_2.ycor() - ball.ycor()) < 20:
-        paddle_2_down()
+        paddle_2.move_down()
 
 
